@@ -122,7 +122,7 @@ Now we have our update rule it is clear how to implement this:
 
 Set a base "w" matrix
 
-Define a predict() function which uses the sigmoid with our weights to predict, this prediction becomes y hat
+Define a predict() function which uses the sigmoid with our weights to predict, this prediction becomes $$\hat{y}$$
 
 Loop the update function through all data points
 
