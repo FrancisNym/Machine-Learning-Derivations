@@ -25,5 +25,35 @@ X_test = X[split:]
 y_train = y[:split]
 y_test = y[split:]
 
+def sigmoid(z):
+    return (1 / (1 + np.exp(-(z))))
 
-print(round(0.6,0))
+def predict(X, w, b):
+    prob = sigmoid(X@w + b)
+    return prob
+
+def gradients(w, b, X, y):
+    y_hat = predict(X, w, b)
+    gradw = X.T @ (y-y_hat) / len(y)
+    gradb = np.mean((y - y_hat))
+    return gradw, gradb
+
+
+def train():
+    n_features = X.shape[1]
+
+    w = np.zeros(n_features)
+    b = 0.0
+    learning_rate = 0.1
+    mingrad = 0.0001
+    steps = 0
+    gradw = 1
+    gradb = 1
+    while steps < 10000 and (np.max(np.abs(gradw))>mingrad or abs(gradb) > mingrad):
+        gradw, gradb = gradients(w, b, X_train, y_train)
+        b = b - (gradb*learning_rate)
+        w = w - gradw*learning_rate
+        steps += 1
+        if not (np.all(np.isfinite(w)) and np.isfinite(b)):
+            break
+    return w, b
