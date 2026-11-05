@@ -24,3 +24,6 @@ X_train = X[:split]
 X_test = X[split:]
 y_train = y[:split]
 y_test = y[split:]
+
+
+print(round(0.6,0))
